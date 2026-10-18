@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Вики — My Time at Portia</title>
+<style>
+:root{--bg:#22272D;--card:#2D343B;--el:#3A4248;--acc:#69BFC4;--acc2:#8ED8E0;--gold:#E2B56F;--red:#E58C80;--text:#F4EEDF;--muted:#AAB6B6;--line:#47525B;color-scheme:dark;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:16px/1.4 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+a{color:var(--acc2);text-decoration:none}
+.wrap{max-width:1000px;margin:0 auto;padding:12px 14px 30px}
+.nav,.row{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin-bottom:10px}
+.chip{background:var(--el);border:1px solid var(--line);border-radius:20px;padding:7px 14px;cursor:pointer;color:var(--text);font:inherit}
+.chip.on{background:var(--acc);color:#22272D;border-color:var(--acc);font-weight:600}
+input[type=search]{flex:1;min-width:160px;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px;color:var(--text);font:inherit}
+input:focus{outline:2px solid var(--acc);outline-offset:1px}
+h1{font-size:1.3rem;margin:14px 0 8px}h2{font-size:1.05rem;margin:18px 0 8px;color:var(--gold)}
+.sub,.meta{color:var(--muted);font-size:.85rem}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:10px}
+.card{display:flex;gap:10px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:14px;padding:10px;min-width:0}
+.card.big{display:block;padding:14px}
+.ico{width:48px;height:48px;flex:none;display:grid;place-items:center;background:var(--el);border-radius:10px}
+.ico img{width:40px;height:40px;object-fit:contain;image-rendering:pixelated}
+.nm{font-weight:600;overflow-wrap:anywhere}
+.chips{display:flex;flex-wrap:wrap;gap:6px}
+.t{display:inline-flex;gap:6px;align-items:center;background:var(--el);border:1px solid var(--line);border-radius:10px;padding:3px 8px;font-size:.85rem}
+.t img{width:20px;height:20px;image-rendering:pixelated}
+.r0{border-color:var(--gold)}.r1{border-color:var(--acc)}.r2{border-color:var(--line)}.r3{border-color:var(--red)}
+.empty{color:var(--muted);text-align:center;padding:30px}
+.more{margin:14px auto;display:block}
+.hd{display:flex;gap:14px;align-items:center}.hd .ico{width:72px;height:72px}.hd .ico img{width:60px;height:60px}
+.desc{white-space:pre-line;margin:10px 0}
+</style>
+</head>
+<body>
+<div class="wrap">
+<nav class="nav"><a class="chip on" href="./">Вики</a><a class="chip" href="../index.html">Артефакты</a><a class="chip" href="../fish.html">Рыба</a></nav>
+<div class="row"><input type="search" id="q" placeholder="Поиск по предметам и жителям…"></div>
+<div class="nav" id="sec"></div>
+<div id="app"><div class="empty">Загрузка…</div></div>
+</div>
+<script>
+const $=s=>document.querySelector(s),esc=s=>String(s??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const norm=s=>String(s||'').toLowerCase().replace(/ё/g,'е');
+const TY={Equipment:'Снаряжение',Material:'Материалы',Food:'Еда',ProductionBook:'Чертежи станков',CreationBook:'Чертежи сборки',TaskProp:'Квестовые предметы',Seed:'Семена',Other:'Прочее'};
+const ty=t=>{t=(t||'').trim();return TY[t]||(t.startsWith('Home')?'Дом и мебель':t.startsWith('Farm')?'Ферма':'Прочее')};
+const RE=['Отличный','Хороший','Не нравится','Ненавистный'];
+const SEC=[['','Главная'],['items','Предметы'],['npcs','Жители'],['recipes','Рецепты']];
+let I={},N={},CR=[],ST=[],CK=[],USED={},MADE={},GIFT={},LIST=[];
+const ico=i=>`<span class="ico"><img src="icons/${esc((i.icon||'').toLowerCase())}.png" alt="" loading="lazy" onerror="this.style.visibility='hidden'"></span>`;
+const ilink=(id,n)=>{const i=I[id];return i?`<a class="t" href="#/item/${id}"><img src="icons/${esc(i.icon.toLowerCase())}.png" alt="" onerror="this.style.display='none'">${esc(i.ru)}${n>1?' ×'+n:''}</a>`:`<span class="t">№${esc(id)}${n>1?' ×'+n:''}</span>`};
+async function load(){
+  const g=f=>fetch('data/'+f+'.json').then(r=>r.json());
+  [I,N,CR,ST,CK]=await Promise.all(['items','npcs','craft','station','cooking'].map(g));
+  const cn={};Object.values(N).forEach(n=>cn[n.ru]=(cn[n.ru]||0)+1);Object.keys(cn).forEach(k=>{if(cn[k]>1)DUP[k]=1});
+  CR=CR.filter(r=>I[r.result]||r.name);ST=ST.filter(r=>I[r.result]||r.name);
+  LIST=Object.values(I).sort((a,b)=>a.ru.localeCompare(b.ru,'ru'));
+  CR.forEach(r=>r.k='craft');ST.forEach(r=>r.k='station');CK.forEach(r=>{r.k='cook';r.mats=r.ings.map(x=>[x[0],x[2],x[1]]);r.result=r.food});
+  [...CR,...ST,...CK].forEach(r=>{(MADE[r.result]??=[]).push(r);r.mats.forEach(m=>(USED[m[0]]??=[]).push(r))});
+  Object.values(N).forEach(n=>RE.forEach((re,k)=>n.gifts[re].forEach(id=>((GIFT[id]??=[]).push([n.id,k]))))); 
+}
+const recCard=r=>{const res=I[r.result];const m=r.mats.map(x=>x[2]===null&&r.k==='cook'?`<span class="t">любой ингредиент (группа ${esc(x[0])})</span>`:ilink(x[0],x[1])).join('');
+  const meta=[r.k==='station'&&r.station_level!==undefined?'станция, ур. '+r.station_level:'',r.crafting_time&&r.crafting_time!=='0'?'⏱ '+r.crafting_time:'',r.experience&&r.experience!=='0'?'опыт '+r.experience:'',r.cost&&r.cost!=='0'?'цена '+r.cost:''].filter(Boolean).join(' · ');
+  return `<div class="card big"><div class="row" style="margin:0 0 8px"><b>${res?`<a href="#/item/${r.result}">${esc(res.ru)}</a>`:esc(r.name)}</b></div><div class="chips">${m||'<span class="sub">материалы не указаны</span>'}</div>${meta?`<div class="meta" style="margin-top:6px">${meta}</div>`:''}</div>`};
+const itemCard=i=>`<a class="card" href="#/item/${i.id}">${ico(i)}<div><div class="nm">${esc(i.ru)}</div><div class="meta">${ty(i.type)}</div></div></a>`;
+let DUP={};const bd=n=>n.birthday&&n.birthday!=='0'?'День рождения: '+esc(n.birthday):'';const vr=n=>DUP[n.ru]?'Вариант №'+esc(n.id):'';
+const npcCard=n=>`<a class="card" href="#/npc/${n.id}"><div><div class="nm">${esc(n.ru)}</div><div class="meta">${[bd(n),vr(n)].filter(Boolean).join(' · ')}</div></div></a>`;
+function paged(list,card,key){const step=60;let shown=step;const box=document.createElement('div');
+  box.innerHTML='<div class="grid"></div>';const grid=box.firstChild;
+  const draw=()=>{grid.innerHTML=list.slice(0,shown).map(card).join('')||'<div class="empty">Ничего не найдено</div>';btn.hidden=shown>=list.length;btn.textContent=`Показать ещё (${list.length-shown})`};
+  const btn=document.createElement('button');btn.className='chip more';btn.onclick=()=>{shown+=step;draw()};box.append(btn);draw();return box}
+const views={
+  home(){return `<h1>Вики по My Time at Portia</h1><p class="sub">Предметов: ${LIST.length} · жителей: ${Object.keys(N).length} · рецептов: ${CR.length+ST.length+CK.length}</p><div class="grid">${SEC.slice(1).map(s=>`<a class="card big" href="#/${s[0]}"><b>${s[1]}</b></a>`).join('')}<a class="card big" href="../index.html"><b>Трекер артефактов</b></a><a class="card big" href="../fish.html"><b>Трекер рыб</b></a></div>`},
+  items(p,qs){const t=qs.get('t')||'';const types=[...new Set(LIST.map(i=>ty(i.type)))].sort();
+    const list=LIST.filter(i=>!t||ty(i.type)===t);const d=document.createElement('div');
+    d.innerHTML=`<h1>Предметы</h1><div class="nav">${['',...types].map(x=>`<a class="chip${x===t?' on':''}" href="#/items${x?'?t='+encodeURIComponent(x):''}">${x||'Все'}</a>`).join('')}</div>`;d.append(paged(list,itemCard));return d},
+  item([id]){const i=I[id];if(!i)return '<div class="empty">Предмет не найден</div>';
+    const gf=(GIFT[id]||[]).slice().sort((a,b)=>a[1]-b[1]);const made=MADE[id]||[],used=USED[id]||[];
+    const price=[i.buy?'Покупка: '+i.buy:'',i.sell?'Продажа: '+i.sell:''].filter(Boolean).join(' · ');
+    return `<div class="card big"><div class="hd">${ico(i)}<div><h1 style="margin:0">${esc(i.ru)}</h1><div class="meta">${ty(i.type)}${price?' · '+price:''}</div></div></div>
+    ${i.desc?`<div class="desc">${esc(i.desc)}</div>`:''}${i.effect&&i.effect!==i.desc?`<div class="desc sub">${esc(i.effect)}</div>`:''}</div>
+    ${made.length?`<h2>Как сделать</h2><div class="grid">${made.map(recCard).join('')}</div>`:''}
+    ${used.length?`<h2>Используется в рецептах (${used.length})</h2><div class="grid">${used.slice(0,40).map(recCard).join('')}</div>${used.length>40?'<p class="sub">Показаны первые 40.</p>':''}`:''}
+    ${gf.length?`<h2>Реакция жителей</h2><div class="chips">${gf.map(([n,k])=>`<a class="t r${k}" href="#/npc/${n}">${esc(N[n].ru)} — ${RE[k].toLowerCase()}</a>`).join('')}</div>`:''}`},
+  npcs(){const d=document.createElement('div');d.innerHTML='<h1>Жители</h1>';d.append(paged(Object.values(N).sort((a,b)=>a.ru.localeCompare(b.ru,'ru')),npcCard));return d},
+  npc([id]){const n=N[id];if(!n)return '<div class="empty">Житель не найден</div>';
+    const cnt={};RE.forEach(r=>n.gifts[r].forEach(x=>cnt[x]=(cnt[x]||0)+1));
+    return `<div class="card big"><h1 style="margin:0">${esc(n.ru)}</h1><div class="meta">${[bd(n),vr(n)].filter(Boolean).join(' · ')}</div></div>`+RE.map((r,k)=>n.gifts[r].length?`<h2>${r} (${n.gifts[r].length})</h2><div class="chips">${n.gifts[r].map(x=>ilink(x)+(cnt[x]>1?'<span title="В данных игры у этого предмета несколько противоречивых реакций">⚠</span>':'')).join('')}</div>`:'').join('')},
+  recipes(p,qs){const k=qs.get('k')||'craft';const L={craft:'Крафт',station:'Станция сборки',cook:'Кулинария',special:'Особые (ур. 99)'};
+    const list=k==='special'?CR.filter(r=>r.unlock_level==='99'):k==='craft'?CR.filter(r=>r.unlock_level!=='99'):k==='station'?ST:CK;
+    const d=document.createElement('div');d.innerHTML=`<h1>Рецепты</h1><div class="nav">${Object.entries(L).map(([x,l])=>`<a class="chip${x===k?' on':''}" href="#/recipes?k=${x}">${l}</a>`).join('')}</div>${k==='special'?'<p class="sub">Рецепты с уровнем доступа 99: смысл этого уровня уточняется.</p>':''}`;
+    d.append(paged(list.slice().sort((a,b)=>(I[a.result]?.ru||a.name).localeCompare(I[b.result]?.ru||b.name,'ru')),recCard));return d},
+  search([q]){q=norm(decodeURIComponent(q||''));const it=LIST.filter(i=>norm(i.ru).includes(q)||norm(i.en).includes(q));const nn=Object.values(N).filter(n=>norm(n.ru).includes(q)||norm(n.en).includes(q));
+    const d=document.createElement('div');d.innerHTML=`<h1>Поиск: ${esc(q)}</h1>${nn.length?`<h2>Жители</h2><div class="grid">${nn.map(npcCard).join('')}</div>`:''}<h2>Предметы (${it.length})</h2>`;d.append(paged(it,itemCard));return d}
+};
+function route(){const h=location.hash.replace(/^#\/?/,'');const [path,qstr]=h.split('?');const [v,...a]=path.split('/');const name=v||'home';
+  $('#sec').innerHTML=SEC.map(s=>`<a class="chip${(s[0]||'home')===name||(name==='item'&&s[0]==='items')||(name==='npc'&&s[0]==='npcs')?' on':''}" href="#/${s[0]}">${s[1]}</a>`).join('');
+  const out=(views[name]||views.home)(a,new URLSearchParams(qstr||''));const app=$('#app');app.innerHTML='';typeof out==='string'?app.innerHTML=out:app.append(out);scrollTo(0,0)}
+let tm;$('#q').oninput=e=>{clearTimeout(tm);const v=e.target.value.trim();tm=setTimeout(()=>{location.hash=v?'#/search/'+encodeURIComponent(v):'#/items'},250)};
+addEventListener('hashchange',route);
+load().then(route).catch(()=>{$('#app').innerHTML='<div class="empty">Не удалось загрузить данные. Открывайте сайт через GitHub Pages или локальный сервер, а не файлом.</div>'});
+</script>
+</body>
+</html>
