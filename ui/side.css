@@ -1,0 +1,30 @@
+/* Общее боковое меню, вход в аккаунт и мобильное меню-бургер (все страницы) */
+body.side{display:flex;min-height:100vh;background:#0b1f4a url(bg.jpg) center/cover fixed;font-family:'Nunito','Trebuchet MS',sans-serif}
+.psb{width:340px;flex:none;padding:24px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:10px;align-self:flex-start;z-index:20}
+.psb .logo{width:290px;margin:0 0 34px}
+.psb a,.psb details.sync summary{display:flex;align-items:center;gap:18px;height:50px;padding:0 16px;border-radius:16px;background:rgba(18,52,120,.55);color:#e9f1ff;text-decoration:none;font-size:19px;letter-spacing:.3px;transition:.15s;font-weight:400;font-family:inherit}
+.psb a img{width:30px;height:30px;object-fit:contain}.psb a:hover,.psb a.on,.psb details.sync summary:hover,.psb details.sync[open] summary{background:rgba(70,120,205,.75)}.psb a.off{opacity:.55;pointer-events:none}.psb .sp{flex:1}
+.psb details.sync{margin:0;padding:0;background:none;border:0;position:relative}
+.psb details.sync summary{list-style:none;cursor:pointer;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.psb details.sync summary::-webkit-details-marker{display:none}
+.psb details.sync summary::before{content:'';width:30px;height:30px;flex:none;background:url(i_login.png) center/contain no-repeat}
+.accp{position:absolute;left:0;bottom:58px;width:300px;background:#fbf1da;border-radius:16px;padding:14px;box-shadow:0 8px 24px #0006;color:#3b2f20;font-size:15px}
+.accp .row{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:8px}.accp input{width:100%;min-width:0;flex:1 1 100%;background:#fff3d8;border:1.5px solid #ecc07a;border-radius:12px;padding:10px 12px;font:inherit;color:#3b2f20}
+.psb .accp .reset{margin:0;padding:8px 12px;background:linear-gradient(#bfe6f5,#8cd0ea);border:0;color:#1d3f78;font-weight:700;border-radius:12px;cursor:pointer;font:inherit;font-weight:700}
+.accp .sub{color:#7a6246;margin:4px 0 0;font-size:.8rem}
+.burger,.scrim{display:none}
+@media(max-width:900px){
+body.side{display:block!important}
+.psb{position:fixed!important;left:0;top:0;bottom:0;width:min(310px,86vw)!important;height:100vh!important;padding:18px 14px!important;flex-direction:column!important;flex-wrap:nowrap!important;background:linear-gradient(#10307aF2,#0a2150F2);transform:translateX(-105%);transition:transform .25s;z-index:60;overflow-y:auto;gap:8px!important;box-shadow:6px 0 24px #0006}
+body.menu-open .psb{transform:none}
+.psb .logo{width:200px!important;margin:44px 0 14px!important}
+.psb a,.psb details.sync summary{font-size:17px!important;height:46px!important;padding:0 14px!important;gap:14px!important}
+.psb a img{width:26px!important;height:26px!important}.psb .sp{display:block!important;flex:1;min-height:10px}
+.accp{position:static!important;width:auto!important;margin-top:8px;box-shadow:none}
+.burger{display:flex;position:fixed;top:10px;left:10px;z-index:70;width:46px;height:46px;border:0;border-radius:14px;background:rgba(18,52,120,.9);flex-direction:column;justify-content:center;align-items:center;gap:5px;box-shadow:0 3px 10px #0007;cursor:pointer;padding:0}
+.burger span{width:22px;height:3px;border-radius:2px;background:#fff;transition:.2s}
+body.menu-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)}body.menu-open .burger span:nth-child(2){opacity:0}body.menu-open .burger span:nth-child(3){transform:translateY(-8px) rotate(-45deg)}
+.scrim{display:block;position:fixed;inset:0;background:#0009;opacity:0;pointer-events:none;transition:.2s;z-index:55}body.menu-open .scrim{opacity:1;pointer-events:auto}
+main{padding:62px 4px 70px!important}body.pt .wrap{margin:62px 6px 40px!important}
+}
+.psb>*{flex-shrink:0}
