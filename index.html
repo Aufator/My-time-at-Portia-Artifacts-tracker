@@ -1,54 +1,29 @@
-<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Жители — My Time at Portia</title>
+<!DOCTYPE html><html lang="ru"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>My Time at Portia — Вики</title>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800;1,500&family=Philosopher:wght@700&display=swap&subset=cyrillic" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,400;0,600;0,700;0,800&family=Philosopher:wght@700&display=swap&subset=cyrillic" rel="stylesheet">
 <style>
 :root{--navy:#1d3f78;--ink:#4b3b28;--mut:#7d6a52;--f:'Nunito','Trebuchet MS',sans-serif;--h:'Philosopher','Georgia',serif}
-*{box-sizing:border-box}html,body{margin:0}
-body{font:15px/1.4 var(--f);color:var(--ink);background:#0b1f4a url(ui/bg.jpg) center/cover fixed;min-height:100vh;display:flex}
-nav{width:340px;flex:none;padding:24px 24px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:10px}
-nav .logo{width:290px;margin:0 0 34px}nav a{display:flex;align-items:center;gap:18px;height:50px;padding:0 16px;border-radius:16px;background:rgba(18,52,120,.55);color:#e9f1ff;text-decoration:none;font-size:19px;letter-spacing:.3px;transition:.15s}
-nav a img{width:30px;height:30px;object-fit:contain}nav a:hover,nav a.on{background:rgba(70,120,205,.75)}nav a.off{opacity:.55;pointer-events:none}nav .sp{flex:1}
+*{box-sizing:border-box}html,body{margin:0}body{font:15px/1.4 var(--f);color:var(--ink)}
 main{flex:1;padding:50px 30px 90px;min-width:0}
-.card{position:relative;width:min(740px,100%);margin:0 auto 110px}.deco.back{z-index:0}.paper{z-index:1}
-.paper{border:56px solid transparent;border-image:url(ui/paper-v.webp) 150 fill/56px stretch;padding:0 6px 34px;min-height:600px;position:relative;z-index:1}
-.deco{position:absolute;inset:0;pointer-events:none;z-index:3}.deco img{position:absolute}
-.head{display:flex;gap:26px;align-items:flex-start;margin-top:-14px}
-.ph{flex:none;width:250px;height:266px;position:relative;background:url(ui/frame.png) center/100% 100% no-repeat}
-.ph .in{position:absolute;inset:16px 14px 14px 16px;border-radius:12px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
-.ph img{width:100%;height:100%;object-fit:contain;object-position:50% 100%}.ph img.an{padding:14px}.ph img.sq{border-radius:50%;margin:auto;width:150px;height:150px;object-fit:cover;transform:none;align-self:center}
-h1{font:700 38px var(--h);color:var(--navy);margin:2px 0 2px}.who{font-weight:800;color:var(--navy);font-size:17px;margin-bottom:6px}
-.bio{font-size:12.5px;font-style:italic;font-weight:500;color:#2c4776;line-height:1.35;margin-bottom:8px}
-.meta div{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--navy);margin:3px 0}.meta img{width:20px;height:20px;object-fit:contain}
-.tabs{display:flex;gap:8px;margin:22px 0 10px}.tabs button{flex:1;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 6px;border:0;border-radius:14px;background:linear-gradient(#f8e6c4,#f1d6a6);font:800 14px var(--f);color:var(--navy);cursor:pointer;box-shadow:0 2px 3px #0002}
-.tabs button img{width:24px;height:24px;object-fit:contain}.tabs button.on{background:linear-gradient(#fff8e8,#fbeacb);box-shadow:inset 0 0 0 2px #f0b968}
-.panel{border:46px solid transparent;border-image:url(ui/paper-h.webp) 130 fill/46px stretch;padding:0 0 4px;margin:0 -20px;min-height:360px}
-.ph img.tp,.tp{position:absolute;width:70px;height:auto;object-fit:none;padding:0;pointer-events:none;z-index:4}.tp.a{left:-20px;top:-8px;transform:rotate(-34deg)}.tp.b{right:-18px;bottom:-6px;transform:rotate(-34deg)}.panel{position:relative}.panel>.tp.c{left:-4px;top:12px;width:78px;transform:rotate(-28deg)}.panel>.tp.d{right:-4px;top:12px;width:78px;transform:rotate(28deg)}
-.panel h2{font:700 30px var(--h);color:var(--navy);margin:0 0 14px}
-.gg{display:flex;flex-direction:column;gap:14px}
-.box{border-radius:12px;padding:10px 12px}.box h3{margin:0 0 6px;display:flex;align-items:center;gap:7px;font:800 17px var(--f)}.box h3 img{width:24px;height:24px;object-fit:contain}
-.row{display:flex;gap:8px;align-items:flex-start;background:rgba(255,255,255,.5);border-radius:10px;padding:6px;margin:5px 0}.pill{flex:none;min-width:44px;text-align:center;color:#fff;font-weight:800;font-size:13px;border-radius:14px;padding:3px 6px;margin-top:6px}
-.its{display:flex;flex-wrap:wrap;gap:4px}.it{width:84px;overflow-wrap:break-word;text-align:center;font-size:10.5px;line-height:1.1;color:var(--ink);font-weight:600}.it img{width:34px;height:34px;object-fit:contain;display:block;margin:0 auto 1px}.it i{display:block;width:34px;height:34px;margin:0 auto}
-.b0{background:#fbe1dc}.b0 h3{color:#d9534f}.b0 .pill{background:#ee6a6a}.b1{background:#e2f0d6}.b1 h3{color:#4f9a3c}.b1 .pill{background:#6fb35a}
-.b2{background:#f1ecd3}.b2 h3{color:#b59a1f}.b2 .pill{background:#e0c04a}.b3{background:#dcebf7}.b3 h3{color:#2f7fc0}.b3 .pill{background:#4a90d9}.b4{background:#fbe1d8}.b4 h3{color:#d9534f}.b4 .pill{background:#ee7a6a}
-.note{font-size:12px;color:var(--mut);margin:0 0 8px}
-.sch{border-collapse:collapse;width:100%}.sch tr.d{border-top:1.5px solid #6f93c4}.sch tr.d:first-child{border:0}.sch td{vertical-align:top;padding:7px 4px;font-size:13px}.sch .dn{width:150px}
-.day{width:136px;height:37px;background-size:100% 100%;display:flex;align-items:center;justify-content:center;color:#2c4776;font:700 14px var(--f);padding-left:22px}
-.sch .tm{width:58px;font-weight:700;color:var(--navy);text-align:right;padding-right:10px;border-right:1.5px solid #6f93c4}.sch .tx{padding-left:12px}.sch td div{margin:2px 0}
-.sd{display:flex;gap:6px;border-top:1.5px solid #6f93c4;padding:8px 0}.sd:first-child{border:0}.sd .dn{width:146px;flex:none}.sl{flex:1;min-width:0}.sr2{display:flex;font-size:13px;margin:3px 0;line-height:1.3}.sr2 b{width:54px;flex:none;color:var(--navy);text-align:right;padding-right:10px;border-right:1.5px solid #6f93c4;margin-right:12px}
-.snow{position:fixed;inset:0;pointer-events:none;z-index:2;overflow:hidden}.snow i{position:absolute;top:-10px;background:#fff;border-radius:50%;opacity:.85;animation:fall linear infinite}@keyframes fall{to{transform:translate(40px,105vh)}}
-.dev{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#102a5cdd;color:#fff;padding:8px 14px;display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px}.dev button{padding:5px 10px;border-radius:8px;border:0;cursor:pointer;font-weight:700}.dev b{margin:0 4px 0 10px}
-.net{position:relative;height:430px;margin:0 auto;max-width:520px}.net svg{position:absolute;inset:0;width:100%;height:100%}
-.nd{position:absolute;transform:translate(-50%,-50%);text-align:center;cursor:pointer}.nd img{width:92px;height:92px;border-radius:50%;object-fit:cover;background:#b9dde0;border:6px solid #b9dde0;display:block;margin:auto}
-.nd.c img{width:108px;height:108px}.nd b{display:block;font:700 17px var(--f);letter-spacing:3px;color:var(--navy);margin-top:4px}.nd small{color:var(--mut);font-weight:600}
-.pk{margin:0 0 18px}.pk h4{margin:0 0 4px;font:700 23px var(--h);color:var(--navy)}.sr{display:flex;gap:3px;align-items:center}.sr img{width:34px;height:34px;object-fit:contain}.sr span{font:800 22px var(--f);color:#6aa8d8;margin:0 6px}
-.pk p{margin:3px 0 0;font-style:italic;color:#34568f;font-size:14px;text-align:center;width:100%;max-width:340px}
-.chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:14px}.chips button{border:0;border-radius:12px;padding:7px 12px;background:#f1d6a6;font:800 13px var(--f);color:var(--navy);cursor:pointer}.chips button.on{background:#fff;box-shadow:inset 0 0 0 2px #f0b968}.list h1{margin-bottom:12px}.list input{width:100%;padding:11px 16px;border-radius:14px;border:0;font:600 16px var(--f);margin-bottom:16px;background:#fff8e8}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:12px}.grid a{text-align:center;text-decoration:none;color:var(--navy);font-weight:800;font-size:14px;background:rgba(255,255,255,.55);border-radius:14px;padding:10px 4px}
-.grid img{width:70px;height:70px;border-radius:50%;object-fit:cover;background:#b9dde0;display:block;margin:0 auto 4px}
-@media(max-width:900px){body{display:block}nav{width:auto;height:auto;position:static;flex-direction:row;flex-wrap:wrap;padding:12px}nav .logo{width:160px;margin:0 10px 0 0}nav a{font-size:14px;height:40px;padding:0 10px}nav .sp,nav a.hide{display:none}main{padding:30px 6px 70px}.head{flex-direction:column;align-items:center}.gg{grid-template-columns:1fr}.panel{margin:0}.tabs{flex-wrap:wrap}.tabs button{flex:1 1 45%}.sd .dn{width:100px}.day{width:100px;padding-left:16px;font-size:12px}}
-</style><link rel="stylesheet" href="ui/side.css"></head><body class="side">
-<nav class="psb"><img class="logo" src="ui/logo.png" alt="My Time at Portia">
-<a href="#"><img src="ui/i_home.png" alt="">Главная</a><a href="#list" class="on" id="nres"><img src="ui/i_res.png" alt="">Жители</a>
+.card{position:relative;width:min(820px,100%);margin:0 auto}
+.paper{border:60px solid transparent;border-image:url(ui/paper-v.webp) 150 fill/60px stretch;padding:0 12px 20px;min-height:640px}
+h1{font:700 40px var(--h);color:var(--navy);margin:-6px 0 8px;text-align:center}
+.div{height:2px;background:linear-gradient(90deg,transparent,#c98a3f 12%,#c98a3f 88%,transparent);position:relative;margin:0 0 22px}.div:after{content:'';position:absolute;left:50%;top:-5px;width:11px;height:11px;background:#e08a2c;transform:translateX(-50%) rotate(45deg);border:1.5px solid #a85a2a}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.tile{position:relative;display:flex;align-items:center;gap:14px;min-height:150px;padding:14px 16px;border-radius:20px;border:3px solid #a85a2a;background:linear-gradient(#fff2cf,#fde6b4);box-shadow:inset 0 0 0 3px #fff6dc,0 4px 8px #6a3a1a55;text-decoration:none;color:var(--ink);transition:transform .15s,box-shadow .15s}
+a.tile:hover{transform:translateY(-3px);box-shadow:inset 0 0 0 3px #fff6dc,0 8px 14px #6a3a1a66}
+.tile img{width:42%;max-width:130px;max-height:112px;object-fit:contain;flex:none;filter:drop-shadow(0 2px 3px #0003)}
+.tile .tx{flex:1;text-align:center}.tile b{display:block;font:700 22px var(--h);color:var(--navy);margin-bottom:6px}.tile span{font-size:13.5px;color:#6b4a2b;line-height:1.3;display:block}
+.tile.soon{filter:saturate(.75);opacity:.9;cursor:default}.tile.soon:after{content:'Скоро';position:absolute;right:12px;top:10px;background:#a85a2a;color:#fff;font:800 11px var(--f);padding:3px 9px;border-radius:10px;letter-spacing:.4px}
+.prog{margin-top:20px;border-radius:20px;border:3px solid #a85a2a;background:linear-gradient(#fff2cf,#fde6b4);box-shadow:inset 0 0 0 3px #fff6dc,0 4px 8px #6a3a1a55;padding:12px 22px 18px}
+.prog h2{font:700 24px var(--h);color:var(--navy);margin:0 0 8px;padding-bottom:6px;border-bottom:2px solid #d9aa6a}
+.pc{display:grid;grid-template-columns:1fr 1fr}.pc a{display:block;text-align:center;text-decoration:none;color:inherit;padding:8px 18px}.pc a+a{border-left:2px solid #d9aa6a}
+.pc h3{font:700 22px var(--h);color:var(--navy);margin:2px 0 10px}.tr{height:15px;border-radius:9px;background:#f1d3a0;border:2px solid #b8793a;overflow:hidden}.tr i{display:block;height:100%;width:0;background:linear-gradient(90deg,#f6c15c,#ec9b2f);transition:width .6s}
+.pc b{display:block;font:700 24px var(--h);color:var(--navy);margin-top:8px}.pc small{color:#7d6a52;font-size:12px}
+@media(max-width:700px){main{padding:62px 4px 60px}.paper{border-width:34px;border-image-width:34px;padding:0 2px 16px;min-height:0}h1{font-size:27px}.grid{grid-template-columns:1fr;gap:12px}.tile{min-height:110px}.tile img{width:34%;max-height:84px}.tile b{font-size:19px}.pc a{padding:6px 8px}.pc h3{font-size:18px}.pc b{font-size:20px}.prog{padding:10px 12px 14px}}
+</style><link rel="stylesheet" href="ui/side.css"></head>
+<body class="side"><nav class="psb"><img class="logo" src="ui/logo.png" alt="My Time at Portia">
+<a href="index.html" class="on"><img src="ui/i_home.png" alt="">Главная</a><a href="residents.html#list" id="nres"><img src="ui/i_res.png" alt="">Жители</a>
 <a href="tracker-artifacts.html"><img src="ui/i_art.png" alt="">Трекер артефактов</a><a href="tracker-fish.html"><img src="ui/i_fish.png" alt="">Трекер рыб</a><a href="#" class="off"><img src="ui/i_calc.png" alt="">Калькулятор</a><a href="#" class="off"><img src="ui/i_rec.png" alt="">Рецепты</a><a href="#" class="off"><img src="ui/i_items.png" alt="">Предметы</a>
 <div class="sp"></div><details class="sync" id="acct"><summary id="acctSum">☁ Проверяем вход…</summary><div class="accp">
     <div class="row" id="aFields" style="margin-top:10px" hidden><input type="email" id="aemail" placeholder="Почта" autocomplete="username"><input type="password" id="apass" placeholder="Пароль (от 6 символов)" autocomplete="current-password"></div>
@@ -56,59 +31,25 @@ h1{font:700 38px var(--h);color:var(--navy);margin:2px 0 2px}.who{font-weight:80
     <div class="row"><button class="reset" id="alogout" style="margin:0" hidden>Выйти</button></div>
     <p class="sub" id="aNote">Первый раз: введите почту и пароль и нажмите «Создать аккаунт». Один вход действует на всех страницах: прогресс трекеров подтягивается и сохраняется сам.</p>
   </div></details></nav>
-<main><div id="app"></div></main>
-<script src="data.js"></script>
+<main><div class="card"><div class="paper">
+<h1>Добро пожаловать в Портию</h1><div class="div"></div>
+<div class="grid">
+<a class="tile" href="residents.html#list"><img src="ui/h_res.png" alt=""><div class="tx"><b>Жители</b><span>Информация о жителях Портии</span></div></a>
+<a class="tile" href="tracker-artifacts.html"><img src="ui/h_art.png" alt=""><div class="tx"><b>Трекер артефактов</b><span>Помощник по сбору артефактов</span></div></a>
+<a class="tile" href="tracker-fish.html"><img src="ui/h_fish.png" alt=""><div class="tx"><b>Трекер рыб</b><span>Помощник отслеживания пойманных рыб</span></div></a>
+<div class="tile soon"><img src="ui/h_calc.png" alt=""><div class="tx"><b>Калькулятор</b><span>Рассчитай нужные материалы</span></div></div>
+<div class="tile soon"><img src="ui/h_rec.png" alt=""><div class="tx"><b>Рецепты</b><span>Книга строителя</span></div></div>
+<div class="tile soon"><img src="ui/h_items.png" alt=""><div class="tx"><b>Предметы</b><span>Просмотр всех предметов</span></div></div>
+</div>
+<div class="prog"><h2>Мой прогресс</h2><div class="pc">
+<a href="tracker-artifacts.html"><h3>Артефакты</h3><div class="tr"><i id="ba"></i></div><b id="na">0 / 149</b><small>частей найдено</small></a>
+<a href="tracker-fish.html"><h3>Рыбы</h3><div class="tr"><i id="bf"></i></div><b id="nf">0 / 39</b><small>поймано</small></a></div></div>
+</div></div></main>
 <script>
-const $=s=>document.querySelector(s),by=Object.fromEntries(D.map(x=>[x.id,x]));
-const SEAS=['','spring','summer','autumn','winter'],DAYS=['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
-// Декор по сезону рождения: [файл, стиль]. Меняйте позиции/размеры здесь.
-const VAR={2:'A',4:'A'};
-// [файл, стиль, 'b'=за пергаментом]. Меняйте позиции/размеры здесь.
-const DECO={
-1:[['p1','left:-34px;top:-36px;width:120px'],['p2','right:-28px;top:-26px;width:150px'],['p3','left:-50px;bottom:-40px;width:260px'],['p4','right:-14px;bottom:-30px;width:130px']],
-'2A':[['s1','left:-40px;top:-34px;width:170px'],['s3','right:-26px;top:-24px;width:200px'],['s4','left:-70px;bottom:-84px;width:240px','b'],['s5','right:-70px;bottom:-84px;width:240px','b'],['s6','left:calc(50% - 42px);bottom:-44px;width:84px','b']],
-'2B':[['s2','left:-56px;top:-52px;width:230px'],['s1','right:-34px;top:-30px;width:160px'],['s3','right:-44px;bottom:-60px;width:210px'],['s6','left:-18px;bottom:-30px;width:70px']],
-'2C':[['s1','left:-40px;top:-34px;width:170px'],['s3','right:-26px;top:-24px;width:190px'],['s4','left:-120px;top:34%;width:200px;transform:rotate(-14deg)','b'],['s5','right:-120px;top:52%;width:200px;transform:rotate(14deg)','b'],['s6','left:calc(50% - 42px);bottom:-44px;width:84px','b']],
-3:[['a1','left:-40px;top:-46px;width:210px'],['a2','left:130px;top:-62px;width:200px'],['a4','right:-26px;top:-22px;width:190px'],['a2','left:-40px;bottom:-50px;width:190px'],['a3','right:-30px;bottom:-40px;width:220px']],
-'4A':[['w1','left:calc(50% - 200px);top:-62px;width:400px'],['w3','right:-6px;top:-44px;width:110px'],['w2','left:-84px;top:46%;width:120px','b'],['dr','left:-30px;width:calc(100% + 60px);bottom:-62px;height:100px'],['w4','right:-34px;bottom:-34px;width:250px']],
-'4B':[['ic','left:6px;width:calc(100% - 12px);top:-6px;height:64px'],['w3','right:-6px;top:-8px;width:104px'],['w2','left:-84px;top:36%;width:120px','b'],['w2','right:-84px;top:62%;width:110px;transform:scaleX(-1)','b'],['dr','left:-30px;width:calc(100% + 60px);bottom:-62px;height:100px']],
-0:[]};
-const dk=x=>VAR[x.s]?x.s+VAR[x.s]:x.s,SRC={dr:'ui/drift.svg',ic:'ui/icicles.svg'};
-const dimg=d=>`<img src="${SRC[d[0]]||'ui/'+d[0]+'.png'}" style="${d[1]}" alt="">`;
-function snow(on){document.querySelectorAll('.snow').forEach(e=>e.remove());if(!on||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const w=document.createElement('div');w.className='snow';w.innerHTML=Array.from({length:34},(_,i)=>`<i style="left:${(i*37)%100}%;width:${3+i%4}px;height:${3+i%4}px;animation-duration:${9+i%7*2}s;animation-delay:-${i*1.3}s"></i>`).join('');document.body.appendChild(w)}
-const R=[['exc','Любит','heart','b0'],['like','Нравится','happy','b1'],['dis','Не нравится','meh','b2'],['hate','Ненавидит','sad','b3']];
-const sg=v=>(v>0?'+':'')+v,img=(f,c)=>f?`<img src="img/item/${f}" alt="" loading="lazy">`:'<i></i>';
-const items=l=>l.map(i=>`<div class="it">${img(i[1])}${i[0]}</div>`).join('');
-const rows=g=>(g||[]).map(([v,l])=>`<div class="row"><span class="pill">${sg(v)}</span><div class="its">${items(l)}</div></div>`).join('')||'<p class="note">Нет данных</p>';
-let cur,tab='g';
-function gifts(x){const box=(k)=>{const r=R.find(a=>a[0]==k);return `<div class="box ${r[3]}"><h3><img src="ui/i_${r[2]}.png" alt="">${r[1]}</h3>${rows(x.g[k])}</div>`};
- const w=x.wish.length?`<div class="box b4"><h3><img src="ui/i_star.png" alt="">Желания ${x.ru}</h3><p class="note">Выдаются случайно по одному-двум жителям в неделю, дают больше очков.</p>${x.wish.map(([v,l])=>`<div class="row"><span class="pill">${sg(v)}</span><div class="its">${items(l)}</div></div>`).join('')}</div>`:'';
- return `<div class="gg">${box('exc')}${box('like')}${box('dis')}${box('hate')}${w}</div><p class="note" style="margin-top:10px">Всё остальное даёт +1. В праздники очки удваиваются, в день рождения утраиваются.</p>`}
-function sched(x){const s=SCHED[x.id];if(!s)return '<p>Расписание для этого жителя ещё готовится.</p>';
- return s.map((d,i)=>`<div class="sd"><div class="dn"><div class="day" style="background-image:url(ui/day${i}.png)">${DAYS[i]}</div></div><div class="sl">${d.map(r=>`<div class="sr2"><b>${r[0]}</b><span>${r[1]}</span></div>`).join('')}</div></div>`).join('')}
-function net(x){const f=x.fr;if(!f.length)return '<p>Нет данных о связях.</p>';const n=f.length,W=520,H=430,cx=W/2,cy=90;
- const pos=f.map((_,i)=>{const a=n==1?Math.PI/2:Math.PI*(0.15+0.7*i/(n-1));return[cx+Math.cos(a)*(n>3?215:190),cy+Math.sin(a)*(n>3?290:270)]});
- const av=o=>by[o]&&by[o].ph?`img/npc/${o}_h.png`:'ui/i_res.png';
- return `<div class="net"><svg viewBox="0 0 ${W} ${H}" preserveAspectRatio="none">${pos.map(p=>`<line x1="${cx}" y1="${cy}" x2="${p[0]}" y2="${p[1]}" stroke="#b9dde0" stroke-width="6" stroke-linecap="round"/>`).join('')}</svg>
- <div class="nd c" style="left:${cx/W*100}%;top:${cy/H*100}%"><img src="${av(x.id)}" alt=""><b>${x.ru.toUpperCase()}</b></div>
- ${f.map((r,i)=>`<div class="nd" style="left:${pos[i][0]/W*100}%;top:${pos[i][1]/H*100}%" onclick="location.hash='${r[0]}'"><img src="${av(r[0])}" alt=""><b>${r[1].toUpperCase()}</b></div>`).join('')}</div>`}
-function perks(x){if(!x.perks.length)return '<p>Для этого жителя бонусов нет.</p>';
- return x.perks.map(([lv,n,t])=>{const love=lv>=10,k=love?8:Math.min(10,(lv-4)*2),a=love?'heart':'star';
- return `<div class="pk"><h4>${n}</h4><div class="sr">${Array.from({length:10},(_,i)=>`<img src="ui/i_${a}${i<k?'':'0'}.png" alt="">`).join('')}${love?'<span>+</span><img src="ui/i_ring.png" alt="">':''}</div><p>${t}</p></div>`}).join('')}
-function show(){const x=cur,s=SEAS[x.s]||'',T=[['g','Подарки','t_g'],['s','Расписание','t_s'],['r','Связи','t_r'],['b','Бонусы','t_b']];
- const ph=x.pf?`<img class="${x.grp==3?'an':''}" src="img/npc/${x.id}_f.png" alt="">`:(x.ph?`<img class="sq" src="img/npc/${x.id}_h.png" alt="">`:'');
- const body={g:()=>gifts(x),s:()=>sched(x),r:()=>net(x),b:()=>`<h2>Бонусы отношений</h2>`+perks(x)}[tab]();
- $('#app').innerHTML=`<div class="card"><div class="deco back">${(DECO[dk(x)]||[]).filter(d=>d[2]=='b').map(dimg).join('')}</div><div class="paper"><div class="head"><div class="ph"><div class="in">${ph}</div><img class="tp a" src="ui/tape.png" alt=""><img class="tp b" src="ui/tape.png" alt=""></div><div><h1>${x.ru}</h1><div class="who">${x.who}</div><div class="bio">${x.bio}</div>
- <div class="meta"><div><img src="ui/i_${s||'cal'}.png" alt="">День рождения: ${x.s?String(x.s).padStart(2,'0')+'.'+String(x.d).padStart(2,'0'):'—'}</div>${x.grp==0?`<div><img src="ui/i_mar.png" alt="">Семейное положение: ${x.m}</div>`:''}${x.h?`<div><img src="ui/i_ht.png" alt="">Рост: ${x.h}</div>`:''}${x.w?`<div><img src="ui/i_wt.png" alt="">Вес: ${x.w}</div>`:''}</div></div></div>
- <div class="tabs">${T.map(t=>`<button class="${tab==t[0]?'on':''}" onclick="tab='${t[0]}';show()"><img src="ui/i_${t[2]}.png" alt="">${t[1]}</button>`).join('')}</div>
- <div class="panel">${tab=='s'?'<img class="tp c" src="ui/tape.png" alt=""><img class="tp d" src="ui/tape.png" alt="">':''}${body}</div></div><div class="deco">${(DECO[dk(x)]||[]).filter(d=>d[2]!='b').map(dimg).join('')}</div></div>`;snow(x.s==4)}
-let grp=0;
-function list(){snow(false);$('#app').innerHTML=`<div class="card"><div class="paper list"><h1>Жители Портии</h1><input id="q" placeholder="Поиск жителя…"><div class="chips" id="ch"></div><div class="grid" id="gr"></div></div></div>`;
- const f=()=>{const q=$('#q').value.toLowerCase();$('#ch').innerHTML=GR.map((g,i)=>`<button class="${grp==i&&!q?'on':''}" onclick="grp=${i};f()">${g} · ${D.filter(x=>x.grp==i).length}</button>`).join('');
-  $('#gr').innerHTML=D.filter(x=>q?(x.ru+x.en).toLowerCase().includes(q):x.grp==grp).map(x=>`<a href="#${x.id}"><img src="${x.ph?`img/npc/${x.id}_h.png`:'ui/i_res.png'}" alt="">${x.ru}</a>`).join('')};window.f=f;$('#q').oninput=f;f()}
-function dev(){if(!/dev/.test(location.search))return;const b=document.createElement('div');b.className='dev';const go=id=>{location.hash=id;route()};
- b.innerHTML='<b>Лето:</b>'+['A','B','C'].map(v=>`<button data-s="2" data-v="${v}">${v}</button>`).join('')+'<b>Зима:</b>'+['A','B'].map(v=>`<button data-s="4" data-v="${v}">${v}</button>`).join('')+'<b>Открыть:</b>'+[['4000044','Ремингтон (лето)'],['4000094','Петра (зима)'],['4000003','Эмили (весна)'],['4000063','Арло (осень)']].map(a=>`<button data-g="${a[0]}">${a[1]}</button>`).join('');
- b.onclick=e=>{const t=e.target;if(t.dataset.v){VAR[t.dataset.s]=t.dataset.v;const g=t.dataset.s==2?'4000044':'4000094';if(cur&&cur.s==t.dataset.s)show();else go(g)}else if(t.dataset.g)go(t.dataset.g)};document.body.appendChild(b)}
-function route(){const h=location.hash.slice(1);if(by[h]){cur=by[h];tab='g';show();scrollTo(0,0)}else list()}
-const qp=new URLSearchParams(location.search);if(qp.get('summer'))VAR[2]=qp.get('summer');if(qp.get('winter'))VAR[4]=qp.get('winter');addEventListener('hashchange',route);route();dev();
+/* Прогресс берётся из сохранений трекеров в этом браузере (после входа в аккаунт трекер сам подтягивает облачный прогресс). */
+(()=>{const rd=k=>{try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}},A=rd('portia-artifacts-v1'),F=rd('portia-fish-v1'),TA=149,TF=39;
+let a=0;if(A&&A.c)for(const id in A.c){const c=A.c[id];if(Array.isArray(c))a+=(A.done&&A.done[id])?c.length:c.filter(x=>x>0).length}
+const f=F&&F.f?Object.values(F.f).filter(v=>v>=1).length:0;
+document.getElementById('na').textContent=a+' / '+TA;document.getElementById('nf').textContent=f+' / '+TF;
+document.getElementById('ba').style.width=Math.min(100,a/TA*100)+'%';document.getElementById('bf').style.width=Math.min(100,f/TF*100)+'%'})();
 </script><script src="ui/auth.js"></script><script src="ui/mobile.js"></script></body></html>
