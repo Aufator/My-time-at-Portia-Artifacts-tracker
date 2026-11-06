@@ -66,10 +66,11 @@ h1{font-size:28px;margin:6px 0 0}.who{font-size:14px;margin:0}.bio{grid-column:1
 .sd{flex-direction:column;gap:4px}.sd .dn{width:auto}.sr2{font-size:13px}.sr2 b{width:46px;margin-right:10px;padding-right:8px}
 .net{height:400px}.nd img{width:72px;height:72px}.nd.c img{width:84px;height:84px}.nd b{font-size:13px;letter-spacing:1.5px}
 .pk .sr img{width:26px;height:26px}.pk h4{font-size:20px}.fxbar{margin-top:-14px;padding-right:6px}}
+a.it{text-decoration:none;border-radius:10px;transition:.12s}a.it:hover{background:#fff8;transform:translateY(-2px)}a.it:hover{color:var(--navy)}
 </style><link rel="stylesheet" href="ui/side.css"></head><body class="side">
 <nav class="psb"><img class="logo" src="ui/logo.png" alt="My Time at Portia">
 <a href="index.html"><img src="ui/i_home.png" alt="">Главная</a><a href="#list" class="on" id="nres"><img src="ui/i_res.png" alt="">Жители</a>
-<a href="tracker-artifacts.html"><img src="ui/i_art.png" alt="">Трекер артефактов</a><a href="tracker-fish.html"><img src="ui/i_fish.png" alt="">Трекер рыб</a><a href="#" class="off"><img src="ui/i_calc.png" alt="">Калькулятор</a><a href="#" class="off"><img src="ui/i_rec.png" alt="">Рецепты</a><a href="#" class="off"><img src="ui/i_items.png" alt="">Предметы</a>
+<a href="tracker-artifacts.html"><img src="ui/i_art.png" alt="">Трекер артефактов</a><a href="tracker-fish.html"><img src="ui/i_fish.png" alt="">Трекер рыб</a><a href="#" class="off"><img src="ui/i_calc.png" alt="">Калькулятор</a><a href="#" class="off"><img src="ui/i_rec.png" alt="">Рецепты</a><a href="items.html"><img src="ui/i_items.png" alt="">Предметы</a>
 <div class="sp"></div><details class="sync" id="acct"><summary id="acctSum">☁ Проверяем вход…</summary><div class="accp">
     <div class="row" id="aFields" style="margin-top:10px" hidden><input type="email" id="aemail" placeholder="Почта" autocomplete="username"><input type="password" id="apass" placeholder="Пароль (от 6 символов)" autocomplete="current-password"></div>
     <div class="row" id="aBtns" hidden><button class="reset" id="alogin" style="margin:0">Войти</button><button class="reset" id="areg" style="margin:0">Создать аккаунт</button><button class="reset" id="areset" style="margin:0">Забыла пароль</button></div>
@@ -106,8 +107,8 @@ function fx(season){document.querySelectorAll('.fx').forEach(e=>e.remove());cons
  w.innerHTML=h;document.body.appendChild(w)}
 let _st;addEventListener('scroll',()=>{document.body.classList.add('scrolling');clearTimeout(_st);_st=setTimeout(()=>document.body.classList.remove('scrolling'),140)},{passive:true});
 const R=[['exc','Любит','heart','b0'],['like','Нравится','happy','b1'],['dis','Не нравится','meh','b2'],['hate','Ненавидит','sad','b3']];
-const sg=v=>(v>0?'+':'')+v,img=(f,c)=>f?`<img src="img/item/${f}" alt="" loading="lazy">`:'<i></i>';
-const items=l=>l.map(i=>`<div class="it">${img(i[1])}${i[0]}</div>`).join('');
+const sg=v=>(v>0?'+':'')+v,img=(f,c)=>f?`<img src="img/item/${f.toLowerCase().replace('.png','.webp')}" alt="" loading="lazy">`:'<i></i>';
+const items=l=>l.map(i=>i[2]?`<a class="it" href="items.html#i/${i[2]}">${img(i[1])}${i[0]}</a>`:`<div class="it">${img(i[1])}${i[0]}</div>`).join('');
 const rows=g=>(g||[]).map(([v,l])=>`<div class="row"><span class="pill">${sg(v)}</span><div class="its">${items(l)}</div></div>`).join('')||'<p class="note">Нет данных</p>';
 let cur,tab='g';
 function gifts(x){const box=(k)=>{const r=R.find(a=>a[0]==k);return `<div class="box ${r[3]}"><h3><img src="ui/i_${r[2]}.png" alt="">${r[1]}</h3>${rows(x.g[k])}</div>`};
