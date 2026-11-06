@@ -1,5 +1,5 @@
 /* Общее боковое меню, вход в аккаунт и мобильное меню-бургер (все страницы) */
-body.side{display:flex;min-height:100vh;background:#0b1f4a url(bg.jpg) center/cover fixed;font-family:'Nunito','Trebuchet MS',sans-serif}
+body.side{display:flex;min-height:100vh;background:#0b1f4a!important;font-family:'Nunito','Trebuchet MS',sans-serif}
 .psb{width:340px;flex:none;padding:24px;position:sticky;top:0;height:100vh;display:flex;flex-direction:column;gap:10px;align-self:flex-start;z-index:20}
 .psb .logo{width:290px;margin:0 0 34px}
 .psb a,.psb details.sync summary{display:flex;align-items:center;gap:18px;height:50px;padding:0 16px;border-radius:16px;background:rgba(18,52,120,.55);color:#e9f1ff;text-decoration:none;font-size:19px;letter-spacing:.3px;transition:.15s;font-weight:400;font-family:inherit}
@@ -28,3 +28,5 @@ body.menu-open .burger span:nth-child(1){transform:translateY(8px) rotate(45deg)
 main{padding:62px 4px 70px!important}body.pt .wrap{margin:62px 6px 40px!important}
 }
 .psb>*{flex-shrink:0}
+
+body.side::before{content:'';position:fixed;inset:0;background:url(bg.jpg) center/cover no-repeat;z-index:-1;transform:translateZ(0)}

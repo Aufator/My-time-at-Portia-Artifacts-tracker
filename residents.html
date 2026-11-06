@@ -11,7 +11,7 @@ nav a img{width:30px;height:30px;object-fit:contain}nav a:hover,nav a.on{backgro
 main{flex:1;padding:50px 30px 90px;min-width:0}
 .card{position:relative;width:min(740px,100%);margin:0 auto 110px}.deco.back{z-index:0}.paper{z-index:1}
 .paper{border:56px solid transparent;border-image:url(ui/paper-v.webp) 150 fill/56px stretch;padding:0 6px 34px;min-height:600px;position:relative;z-index:1}
-.deco{position:absolute;inset:0;pointer-events:none;z-index:3}.deco img{position:absolute}
+.deco{position:absolute;inset:0;pointer-events:none;z-index:3;container-type:inline-size}.deco img{position:absolute}
 .head{display:flex;gap:26px;align-items:flex-start;margin-top:-14px}
 .ph{flex:none;width:250px;height:266px;position:relative;background:url(ui/frame.png) center/100% 100% no-repeat}
 .ph .in{position:absolute;inset:16px 14px 14px 16px;border-radius:12px;overflow:hidden;display:flex;align-items:flex-end;justify-content:center}
@@ -47,18 +47,19 @@ h1{font:700 38px var(--h);color:var(--navy);margin:2px 0 2px}.who{font-weight:80
 .grid img{width:70px;height:70px;border-radius:50%;object-fit:cover;background:#b9dde0;display:block;margin:0 auto 4px}
 @media(max-width:900px){body{display:block}nav{width:auto;height:auto;position:static;flex-direction:row;flex-wrap:wrap;padding:12px}nav .logo{width:160px;margin:0 10px 0 0}nav a{font-size:14px;height:40px;padding:0 10px}nav .sp,nav a.hide{display:none}main{padding:30px 6px 70px}.head{flex-direction:column;align-items:center}.gg{grid-template-columns:1fr}.panel{margin:0}.tabs{flex-wrap:wrap}.tabs button{flex:1 1 45%}.sd .dn{width:100px}.day{width:100px;padding-left:16px;font-size:12px}}
 .fxbar{width:min(740px,100%);margin:-26px auto 6px;text-align:right}.fxb{border:0;border-radius:14px;padding:7px 14px;background:rgba(18,52,120,.7);color:#e9f1ff;font:700 13px var(--f);cursor:pointer}.fxb.off{opacity:.65}
-.fx{position:fixed;inset:0;pointer-events:none;z-index:6;overflow:hidden}.fx i{position:absolute;display:block}
+.fx{position:fixed;inset:0;pointer-events:none;z-index:6;overflow:hidden;contain:strict}
+.fx i{position:absolute;display:block;top:-40px;will-change:transform;background-size:contain;background-repeat:no-repeat}
+.fx.leaf i,.fx.petal i{opacity:.9;animation:fall linear infinite}
 .fx.snow i{background:#fff;border-radius:50%;opacity:.85;animation:fall linear infinite}
-.fx.petal i{background:radial-gradient(circle at 30% 30%,#ffe3ec,#ffb3c9);border-radius:80% 0 80% 0;opacity:.85;animation:fall linear infinite}
-.fx.leaf i{border-radius:0 100% 0 100%;opacity:.85;animation:fall linear infinite}
-.fx.fly i{border-radius:50%;background:#ffe98a;box-shadow:0 0 6px 3px rgba(255,226,110,.85),0 0 16px 7px rgba(255,190,50,.35);animation:wander ease-in-out infinite alternate,blink ease-in-out infinite}
-@keyframes fall{from{transform:translate3d(0,-30px,0) rotate(0)}50%{transform:translate3d(calc(var(--dx)*.4),55vh,0) rotate(calc(var(--rt)*.5))}to{transform:translate3d(var(--dx),112vh,0) rotate(var(--rt))}}
-@keyframes wander{from{transform:translate(0,0)}33%{transform:translate(28px,-22px)}66%{transform:translate(-18px,16px)}to{transform:translate(22px,26px)}}
-@keyframes blink{0%,100%{opacity:.15}50%{opacity:1}}
+.fx.fly i{top:0;border-radius:50%;background:radial-gradient(circle,#fffbd0 0,#ffe46b 30%,rgba(255,205,70,.5) 58%,rgba(255,200,60,0) 72%);animation:wander ease-in-out infinite alternate,blink ease-in-out infinite}
+body.scrolling .fx i{animation-play-state:paused}
+@keyframes fall{from{transform:translate3d(0,-40px,0) rotate(0)}50%{transform:translate3d(calc(var(--dx)*.4),55vh,0) rotate(calc(var(--rt)*.5))}to{transform:translate3d(var(--dx),112vh,0) rotate(var(--rt))}}
+@keyframes wander{from{transform:translate3d(0,0,0)}33%{transform:translate3d(28px,-22px,0)}66%{transform:translate3d(-18px,16px,0)}to{transform:translate3d(22px,26px,0)}}
+@keyframes blink{0%,100%{opacity:.2}50%{opacity:1}}
 .grid .np{text-align:center;color:#6b5a44;font-weight:800;font-size:14px;background:rgba(255,255,255,.35);border-radius:14px;padding:10px 4px;cursor:default}.grid .np img{width:70px;height:70px;border-radius:50%;object-fit:cover;background:#cfd8dc;display:block;margin:0 auto 4px;filter:saturate(.7)}
 .nd small{display:block;color:#c0782a;font-weight:700;font-size:12px}
 @media(max-width:700px){.paper{border-width:30px;border-image-width:30px;padding:0 2px 26px}.panel{border-width:26px;border-image-width:26px;margin:0 -8px;min-height:200px}
-.head{display:grid;grid-template-columns:124px 1fr;gap:2px 12px;align-items:start;margin-top:-4px}.head>div:not(.ph){display:contents}.ph{grid-row:1/3;width:124px;height:134px}.ph .in{inset:9px 8px 8px 9px}.tp.a,.tp.b{width:44px}
+.head{display:grid;grid-template-columns:124px 1fr;gap:2px 12px;align-items:start;margin-top:-4px}.head>div:not(.ph){display:contents}.ph{grid-row:1/3;width:124px;height:134px}.ph .in{inset:9px 8px 8px 9px}.ph img.tp.a,.ph img.tp.b{width:30px}.ph img.tp.a{left:-9px;top:-4px}.ph img.tp.b{right:-8px;bottom:-4px}
 h1{font-size:28px;margin:6px 0 0}.who{font-size:14px;margin:0}.bio{grid-column:1/-1;font-size:12.5px;margin:8px 0 2px}.meta{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;column-gap:8px}.meta div{font-size:13px}
 .tabs{margin:14px 0 8px}.tabs button{padding:9px 4px;font-size:13px}
 .row{flex-direction:column;gap:2px;padding:6px 6px 8px}.pill{margin-top:2px;align-self:flex-start}.it{width:70px;font-size:10px}.box{padding:8px 8px}
@@ -82,21 +83,28 @@ const $=s=>document.querySelector(s),by=Object.fromEntries(D.map(x=>[x.id,x]));
 const SEAS=['','spring','summer','autumn','winter'],DAYS=['Понедельник','Вторник','Среда','Четверг','Пятница','Суббота','Воскресенье'];
 // Декор по сезону рождения: [файл, стиль]. Меняйте позиции/размеры здесь.
 const DECO={
-1:[['sp_corner','left:-72px;top:-78px;width:240px'],['sp_arch','right:-50px;top:-70px;width:210px;transform:scaleX(-1)'],['sp_group','left:-56px;bottom:-34px;width:210px','b'],['sp_f1','right:-34px;bottom:-34px;width:120px','b'],['sp_petals','left:-84px;top:46%;width:90px']],
-2:[['su_big','left:-60px;top:-82px;width:250px'],['su_big2','right:-60px;top:-82px;width:240px'],['su_corner','left:-70px;bottom:-56px;width:220px','b'],['su_v2','right:-40px;bottom:-46px;width:120px','b'],['su_f2','right:50px;bottom:-34px;width:130px','b']],
-3:[['au_br1','left:-70px;top:-66px;width:240px'],['au_br2','right:-66px;top:-76px;width:170px'],['au_rowan','left:-34px;bottom:-40px;width:110px','b'],['au_leaves','right:-44px;bottom:-54px;width:150px','b']],
-4:[['wi_fir','left:-78px;top:-80px;width:230px'],['wi_fir','right:-78px;top:-80px;width:210px;transform:scaleX(-1)'],['wi_flake','left:-62px;top:44%;width:84px'],['wi_flake2','right:-54px;top:30%;width:66px'],['wi_drift','left:-44px;width:calc(100% + 88px);bottom:-50px;height:104px','b'],['wi_snowman','right:-44px;bottom:-40px;width:190px','b']],
+1:[['sp_corner','left:-3cqw;top:-4cqw;width:29cqw'],['sp_f3','right:-2cqw;top:-3cqw;width:15cqw'],['sp_group','left:-3cqw;bottom:-3cqw;width:17cqw']],
+2:[['su_f1','left:-1cqw;top:-2cqw;width:11cqw'],['su_big','right:-3cqw;top:-4cqw;width:38cqw'],['su_corner','left:-3cqw;bottom:-3cqw;width:26cqw']],
+3:[['au_br1','left:-3cqw;top:-4cqw;width:29cqw'],['au_br2','right:-2cqw;top:-4cqw;width:20cqw'],['au_leaves','left:-2cqw;bottom:-3cqw;width:14cqw']],
+4:[['wi_flake','left:-3cqw;top:-5cqw;width:11cqw'],['wi_flake2','left:6cqw;top:-3cqw;width:6cqw'],['wi_fir','right:-3cqw;top:-4cqw;width:25cqw'],['wi_snowman','left:-3cqw;bottom:-3cqw;width:24cqw'],['wi_drift','right:-3cqw;bottom:-2.5cqw;width:30cqw']],
 0:[]};
-const IS_M=()=>innerWidth<700,KS=()=>IS_M()?.5:1;
-const dimg=d=>`<img src="ui/${d[0]}.png" style="${d[1].replace(/(-?\d+)px/g,(m,n)=>Math.round(n*KS())+'px')}" alt="">`;
-/* Анимации по сезону рождения: 1 лепестки сакуры, 2 светлячки, 3 листья, 4 снежинки. Кнопка вверху включает/выключает. */
-const FXN=[0,24,20,22,32],FXT=['','petal','fly','leaf','snow'];
+const IS_M=()=>innerWidth<700;
+const dimg=d=>`<img src="ui/${d[0]}.png" style="${d[1]}" alt="">`;
+/* Анимации по сезону рождения: 1 лепестки сакуры, 2 светлячки, 3 листья, 4 снежинки. Частиц мало и они разнесены по экрану. */
+const FXC={1:[9,6],2:[14,8],3:[9,6],4:[18,10]},FXT=['','petal','fly','leaf','snow'];
 const fxOn=()=>{try{return localStorage.getItem('portia-fx')!=='0'}catch(e){return true}};
 function fx(season){document.querySelectorAll('.fx').forEach(e=>e.remove());const b=$('#fxb');if(b){b.textContent=fxOn()?'✨ Анимация: включена':'✨ Анимация: выключена';b.classList.toggle('off',!fxOn())}
- if(!season||!fxOn()||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const t=FXT[season],w=document.createElement('div');w.className='fx '+t;let h='';
- for(let i=0;i<FXN[season];i++){const r=(i*7919%97)/97,r2=(i*104729%89)/89,dur=t=='fly'?10+r2*10:16+r2*16,sz=t=='fly'?3+r*3:t=='snow'?3+r*5:t=='leaf'?11+r*8:7+r*7;
-  h+=`<i style="left:${(r*100).toFixed(1)}%;top:${t=='fly'?(r2*90).toFixed(1)+'%':'-30px'};width:${sz.toFixed(1)}px;height:${(t=='petal'?sz*.75:sz).toFixed(1)}px;--dx:${((r2-.5)*160).toFixed(0)}px;--rt:${(180+r*360).toFixed(0)}deg;animation-duration:${dur.toFixed(1)}s${t=='fly'?','+(3+r*3).toFixed(1)+'s':''};animation-delay:-${(r2*dur).toFixed(1)}s${t=='fly'?',-'+(r*3).toFixed(1)+'s':''};background-color:${t=='leaf'?['#e8742a','#d9482b','#f0a33a','#c9572a'][i%4]:''}"></i>`}
+ if(!season||!fxOn()||matchMedia('(prefers-reduced-motion:reduce)').matches)return;const t=FXT[season],n=FXC[season][IS_M()?1:0],m=IS_M()?.75:1,w=document.createElement('div');w.className='fx '+t;let h='';
+ const base=t=='fly'?16:t=='snow'?26:t=='petal'?26:24;
+ for(let i=0;i<n;i++){const g=(i*0.6180339+0.07)%1,v=((i*5+3)%n)/n,dur=base*(0.85+0.3*v),dl=-(i/n)*dur,left=(g*92+2).toFixed(1),dx=((((i*7)%5)-2)*45).toFixed(0);
+  let st=`left:${left}%;--dx:${dx}px;--rt:${(200+v*260).toFixed(0)}deg;animation-duration:${dur.toFixed(1)}s;animation-delay:${dl.toFixed(1)}s;`;
+  if(t=='fly'){const tp=(((i*0.381966+0.11)%1)*84+6).toFixed(1),sz=(16+v*8).toFixed(0);st=`left:${left}%;top:${tp}%;width:${sz}px;height:${sz}px;animation-duration:${(10+v*10).toFixed(1)}s,${(3.5+v*3).toFixed(1)}s;animation-delay:${(-v*8).toFixed(1)}s,${(-i*0.9).toFixed(1)}s;`}
+  else if(t=='snow'){const sz=(3+v*5).toFixed(1);st+=`width:${sz}px;height:${sz}px;`}
+  else if(t=='petal'){const sz=((13+v*9)*m).toFixed(0);st+=`width:${sz}px;height:${(sz*.93).toFixed(0)}px;background-image:url(ui/petal.png);`}
+  else{const big=i%2==0,sz=((big?28:34)*(0.8+v*.5)*m).toFixed(0);st+=`width:${sz}px;height:${(sz*(big?.88:.67)).toFixed(0)}px;background-image:url(ui/${big?'au_big':'au_small'}.png);`}
+  h+=`<i style="${st}"></i>`}
  w.innerHTML=h;document.body.appendChild(w)}
+let _st;addEventListener('scroll',()=>{document.body.classList.add('scrolling');clearTimeout(_st);_st=setTimeout(()=>document.body.classList.remove('scrolling'),140)},{passive:true});
 const R=[['exc','Любит','heart','b0'],['like','Нравится','happy','b1'],['dis','Не нравится','meh','b2'],['hate','Ненавидит','sad','b3']];
 const sg=v=>(v>0?'+':'')+v,img=(f,c)=>f?`<img src="img/item/${f}" alt="" loading="lazy">`:'<i></i>';
 const items=l=>l.map(i=>`<div class="it">${img(i[1])}${i[0]}</div>`).join('');
@@ -128,5 +136,5 @@ function list(){fx(0);$('#app').innerHTML=`<div class="card"><div class="paper l
  const f=()=>{const q=$('#q').value.toLowerCase();$('#ch').innerHTML=GR.map((g,i)=>`<button class="${grp==i&&!q?'on':''}" onclick="grp=${i};f()">${g} · ${D.filter(x=>x.grp==i).length}</button>`).join('');
   $('#gr').innerHTML=D.filter(x=>q?(x.ru+x.en).toLowerCase().includes(q):x.grp==grp).map(x=>{const im=`<img src="${x.ph?`img/npc/${x.id}_h.png`:'ui/i_res.png'}" alt="">${x.ru}`;return x.pg?`<a href="#${x.id}">${im}</a>`:`<div class="np">${im}</div>`}).join('')};window.f=f;$('#q').oninput=f;f()}
 function route(){const h=location.hash.slice(1);if(by[h]&&by[h].pg){cur=by[h];tab='g';show();scrollTo(0,0)}else list()}
-addEventListener('hashchange',route);route();$('#fxb').onclick=()=>{try{localStorage.setItem('portia-fx',fxOn()?'0':'1')}catch(e){}fx(cur&&location.hash.slice(1)==cur.id?cur.s:0)};addEventListener('resize',()=>{if(cur&&by[location.hash.slice(1)])show()});
+addEventListener('hashchange',route);route();$('#fxb').onclick=()=>{try{localStorage.setItem('portia-fx',fxOn()?'0':'1')}catch(e){}fx(cur&&location.hash.slice(1)==cur.id?cur.s:0)};let _w=innerWidth;addEventListener('resize',()=>{if(innerWidth!==_w&&Math.abs(innerWidth-_w)>40){_w=innerWidth;if(cur&&by[location.hash.slice(1)])show()}});
 </script><script src="ui/auth.js"></script><script src="ui/mobile.js"></script></body></html>
