@@ -26,12 +26,13 @@ h1{font:700 44px/1.1 var(--h);color:var(--navy);margin:-8px 0 6px}.sub{color:var
 .hd{display:grid;grid-template-columns:230px 1fr;gap:18px;align-items:start;margin-bottom:14px}
 .big{display:grid;place-items:center;min-height:190px}.big img{width:170px;height:170px;object-fit:contain;filter:drop-shadow(0 6px 6px #0004)}
 .sec{margin:14px 0;border-radius:14px;background:rgba(255,243,214,.75);border:2px solid #ecc989;overflow:hidden;box-shadow:0 2px 4px #6a3a1a22}
-.sec>h2{display:flex;align-items:center;gap:10px;margin:0;padding:8px 14px;background:linear-gradient(#f3d79c,#e8c07a);font:700 25px var(--h);color:#4a3418}.sec>h2 img{width:30px;height:30px;object-fit:contain}
+.sec>h2{display:flex;align-items:center;gap:10px;margin:0;padding:8px 14px;background:linear-gradient(#f3d79c,#e8c07a);font:700 25px var(--h);color:#4a3418}.sec>h2 img{width:34px;height:34px;object-fit:contain}
 .sec .bd{padding:10px 14px}.sr{display:flex;gap:12px;align-items:flex-start;padding:7px 0}.sr+.sr{border-top:1px solid #ecd5a6}.sr>img{width:44px;height:44px;object-fit:contain;flex:none}
 .sr b{display:block;font:700 18px var(--h);color:var(--navy)}.sr p{margin:2px 0 0;font-size:14px;color:#4b3b28}.sr a{color:var(--navy);font-weight:800;text-decoration:none}.sr a:hover{text-decoration:underline}
 .mats{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.mt{display:inline-flex;align-items:center;gap:6px;padding:3px 10px 3px 4px;border-radius:12px;background:#fff8e6;border:1.5px solid #e2b56a;color:var(--navy);font-weight:800;font-size:13px;text-decoration:none}.mt img{width:28px;height:28px;object-fit:contain}.mt.tg{padding-left:10px;background:#e9f3d6;border-color:#b6d08a}
 .ur{display:flex;align-items:center;gap:12px;padding:6px 0}.ur+.ur{border-top:1px solid #ecd5a6}.ur img{width:40px;height:40px;object-fit:contain}.ur b{font:700 17px var(--h);color:var(--navy)}.ur a{text-decoration:none}.ur a:hover b{text-decoration:underline}.ur p{margin:0;font-size:13.5px}
 .tr{display:grid;grid-template-columns:1fr 1fr}.tr>div{padding:10px 14px;text-align:center}.tr>div+div{border-left:2px solid #ecd5a6}.tr small{display:block;color:#5a4528;font-weight:700}.tr .v{font:700 30px var(--h);color:#2f6b34;display:flex;gap:8px;align-items:center;justify-content:center;margin-top:2px}.tr .v.no{color:#5a4528;font-size:23px}
+.gp{margin:0 0 6px;font-size:15px}.gl{margin:0;padding-left:22px}.gl li{margin:4px 0;font-size:15px;line-height:1.45}.gl a,.gp a{color:var(--navy);font-weight:800;text-decoration:none}.gl a:hover{text-decoration:underline}.inl{height:22px;width:22px;object-fit:contain;vertical-align:-6px}.gd{width:28px;height:28px;object-fit:contain}
 .coin{width:24px;height:24px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#fff3a8,#f2b72b 55%,#b9770e);box-shadow:inset 0 0 0 2px #fff6c4,0 1px 2px #0005;display:inline-block}.v small{display:inline;font:700 16px var(--f);color:#6b4a2b}
 .sh{font-size:14px;color:#4b3b28;margin-top:4px;text-align:left}.sh div{display:flex;justify-content:space-between;gap:10px;padding:2px 0;border-bottom:1px dotted #d9b97a}
 .note{font-size:12.5px;color:#7d6a52}
@@ -53,8 +54,9 @@ const $=s=>document.querySelector(s),by=Object.fromEntries(IT.map(x=>[x.i,x])),C
 const esc=s=>String(s).replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
 const IC={mn:'item_pickaxe_1',tr:'item_axe',ch:'item_express03',dch:'item_equip_cardboardbox',hb:'item_basket',fi:'item_fishpole',mob:'item_marco_weapon_001',qu:'item_autumnmedalgold',rc:'item_accessories_processtoolbox',bx:'item_express03',cr:'item_accessories_processtoolbox',st:'item_accessories_processtoolbox',ck:'item_bread',shop:'item_goldbag',use:'item_book003',trade:'item_goldbag',desc:'item_book16'};
 const si=k=>`<img src="img/item/${IC[k]}.webp" alt="" onerror="this.style.visibility='hidden'">`;
-const lk=i=>by[i]?`<a href="#i/${i}">${esc(by[i].n)}</a>`:'';
-const mt=(i,n)=>by[i]?`<a class="mt" href="#i/${i}"><img src="${ico(by[i])}" alt="">${esc(by[i].n)}${n>1?' ×'+n:''}</a>`:'';
+const gi=i=>by[i]||by[AL[i]],lk=i=>{const y=gi(i);return y?`<a href="#i/${y.i}">${esc(y.n)}</a>`:''};
+const gold=n=>{const a=n%100,b=n%10;return a>10&&a<15?'гольдов':b==1?'гольд':b>1&&b<5?'гольда':'гольдов'},G=n=>n+' '+gold(n),hi=n=>`<img src="ui/s_${n}.png" alt="">`,inl=n=>`<img class="inl" src="ui/s_${n}.png" alt="">`;
+const mt=(i,n)=>{const y=gi(i);return y?`<a class="mt" href="#i/${y.i}"><img src="${ico(y)}" alt="">${esc(y.n)}${n>1?' ×'+n:''}</a>`:''};
 const card=x=>`<a class="ic" href="#i/${x.i}"><img src="${ico(x)}" alt="" loading="lazy"><div>${esc(x.n)}</div><span>${x.t}</span></a>`;
 const MAG='<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1d3f78" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>';
 let state={q:'',chip:'',n:90};
@@ -70,35 +72,42 @@ function category(k){const c=CK[k];if(!c)return catalog();const all=IT.filter(x=
   if($('#ch'))$('#ch').innerHTML=`<button class="${state.chip?'':'on'}" data-t="">Все · ${all.length}</button>`+types.map(t=>`<button class="${state.chip==t?'on':''}" data-t="${t}">${t} · ${all.filter(x=>x.t==t).length}</button>`).join('');
   $('#res').innerHTML=`<div class="ig">${r.slice(0,state.n).map(card).join('')}</div>${r.length>state.n?'<button class="more" id="mo">Показать ещё ('+(r.length-state.n)+')</button>':''}`;const m=$('#mo');if(m)m.onclick=()=>{state.n+=120;draw()}};
  $('#q').oninput=e=>{state.q=e.target.value;state.n=90;draw()};if($('#ch'))$('#ch').onclick=e=>{if(e.target.dataset.t!==undefined){state.chip=e.target.dataset.t;state.n=90;draw()}};draw()}
-function sources(x){const R=[],row=(k,t,p)=>R.push(`<div class="sr">${si(k)}<div><b>${t}</b><p>${p}</p></div></div>`);
+function sources(x){const L=[],ln=a=>a.map(lk).filter(Boolean).join(', '),ml=a=>a.map(m=>{const y=gi(m[0]);return y?`<a href="#i/${y.i}">${esc(y.n)}</a>${m[1]>1?' ×'+m[1]:''}`:''}).filter(Boolean).join(', ');
  x.s.forEach(e=>{const k=e[0];
-  if(k=='mn')row('mn','Горное дело','Добывается при разбивании камней и руды.');
-  else if(k=='tr')row('tr','Рубка деревьев','Выпадает при рубке и корчевании деревьев.');
-  else if(k=='ch')row('ch','Сундуки','Можно найти в сундуках в городе и окрестностях.');
-  else if(k=='dch')row('dch','Подземелья','Награда из сундуков в подземельях.');
-  else if(k=='hb')row('hb','Сбор','Собирается в дикой природе.');
-  else if(k=='fi')row('fi','Рыбалка','Можно выловить удочкой.');
-  else if(k=='mob')row('mob','Монстры','Выпадает из: '+e[1].map(esc).join(', ')+'.');
-  else if(k=='qu')row('qu','Награды за задания','Выдаётся в награду за задания'+(e[1]>1?' ('+e[1]+')':'')+'.');
-  else if(k=='rc')row('rc','Переработка','Получается при переработке: '+e[1].map(lk).filter(Boolean).join(', ')+'.');
-  else if(k=='bx')row('bx','Из ящиков и мешков','Выпадает из: '+e[1].map(lk).filter(Boolean).join(', ')+'.');
-  else if(k=='ck')row('ck','Готовка','Готовится на кухне по рецепту, указанному выше.');
-  else if(k=='cr')row('cr','Крафт','Изготавливается из:<div class="mats">'+e[3].map(m=>mt(m[0],m[1])).join('')+'</div>'+(e[2]?`<div class="note">Стоимость работы: ${e[2]} голов</div>`:''));
-  else if(k=='st')row('st','Станция крафта','Собирается из компонентов:<div class="mats">'+e[2].map(m=>mt(m[0],m[1])).join('')+'</div>')});
- if(x.sh.length)row('shop','Магазины',x.sh.map(s=>esc(s[0])).join(', ')+'.');
- return R.join('')}
+  if(k=='mn')L.push('Добыть киркой, разбивая камни и рудные жилы');
+  else if(k=='tr')L.push('Срубить дерево или выкорчевать пень');
+  else if(k=='ch')L.push('Найти в сундуках в городе и окрестностях');
+  else if(k=='dch')L.push('Найти в сундуках в подземельях');
+  else if(k=='hb')L.push('Собрать в дикой природе');
+  else if(k=='fi')L.push('Выловить удочкой');
+  else if(k=='mob')L.push('Выбить из монстров: '+e[1].map(esc).join(', '));
+  else if(k=='tl')L.push('Получить в награду за прохождение: '+e[1].map(esc).join(', '));
+  else if(k=='or')L.push('Получить в награду за выполнение заказов');
+  else if(k=='jr')L.push('Разбить кувшины, бочки и ящики');
+  else if(k=='pi')L.push('Разбить предметы, расставленные в мире');
+  else if(k=='qu')L.push('Получить в награду за выполнение заданий');
+  else if(k=='rc')L.push('Получить при переработке: '+ln(e[1]));
+  else if(k=='bx')L.push('Достать из: '+ln(e[1]));
+  else if(k=='ck')L.push('Приготовить на кухне по рецепту, указанному выше');
+  else if(k=='cr')L.push('Изготовить '+inl('fab')+' из: '+ml(e[3])+(e[2]?` (стоимость работы — ${G(e[2])})`:''));
+  else if(k=='st'){const lv=Math.min(3,Math.max(1,e[3]||1));L.push(`Собрать на ${inl('wb'+lv)} верстаке ${lv} ур. из компонентов: `+ml(e[2]))}});
+ if(x.sh.length)L.push('Купить в магазинах: '+x.sh.map(s=>esc(s[0])+' ('+(s[1]?G(s[1]):'обмен')+')').join(', '));
+ if(!L.length)return '<p class="note">Способы получения пока не описаны.</p>';
+ return `<p class="gp">${esc(x.n)} можно получить ${L.length>1?'следующими способами':'так'}:</p><ul class="gl">${L.map((t,i)=>`<li>${t}${i<L.length-1?';':'.'}</li>`).join('')}</ul>`}
 function recipes(x){const R=x.s.filter(e=>e[0]=='ck');if(!R.length)return '';
- return `<div class="sec"><h2>${si('ck')}Рецепт приготовления</h2><div class="bd">${R.map((e,i)=>`<div class="sr"><div><b>${R.length>1?'Вариант '+(i+1):'Ингредиенты'}</b><div class="mats">${e[1].map(m=>m[0]=='i'?mt(m[1],m[2]):`<span class="mt tg">Любые: ${esc(m[1])}${m[2]>1?' ×'+m[2]:''}</span>`).join('')}</div></div></div>`).join('')}</div></div>`}
-function item(id){const x=by[id];if(!x)return catalog();const c=CK[x.c];
- const srcs=sources(x),uses=x.u.slice(0,40).map(u=>by[u]&&`<div class="ur"><img src="${ico(by[u])}" alt=""><a href="#i/${u}"><b>${esc(by[u].n)}</b></a><p>${by[u].c=='food'?'Используется в рецепте.':'Используется при изготовлении.'}</p></div>`).filter(Boolean).join('');
- const sale=x.sl?`<div class="v"><span class="coin"></span>${x.p} <small>голов</small></div>`:'<div class="v no">Нельзя продать</div>';
- const buy=x.sh.length?`<div class="sh">${x.sh.map(s=>`<div><span>${esc(s[0])}</span><b>${s[1]?s[1]+' голов':'обмен'}</b></div>`).join('')}</div>`:'<div class="v no">Не продаётся</div><small>В магазинах</small>';
+ return `<div class="sec"><h2>${hi('use')}Рецепт приготовления</h2><div class="bd">${R.map((e,i)=>`<div class="sr"><div><b>${R.length>1?'Вариант '+(i+1):'Ингредиенты'}</b><div class="mats">${e[1].map(m=>m[0]=='i'?mt(m[1],m[2]):`<span class="mt tg">Любые: ${esc(m[1])}${m[2]>1?' ×'+m[2]:''}</span>`).join('')}</div></div></div>`).join('')}</div></div>`}
+function item(id){const x=gi(id);if(!x)return catalog();if(x.i!=id)history.replaceState(null,'','#i/'+x.i);const c=CK[x.c];
+ const uses=[...new Set(x.u.map(u=>{const y=gi(u);return y?y.i:null}).filter(Boolean))],ushow=uses.slice(0,40).map(u=>`<div class="ur"><img src="${ico(by[u])}" alt=""><a href="#i/${u}"><b>${esc(by[u].n)}</b></a><p>${by[u].c=='food'?'Используется в рецепте.':'Используется при изготовлении.'}</p></div>`).join('');
+ const sale=x.sl?`<div class="v"><img class="gd" src="ui/s_gold.png" alt="">${x.p} <small>${gold(x.p)}</small></div>`:'<div class="v no">Нельзя продать</div>';
+ const buy=x.sh.length?`<div class="sh">${x.sh.map(s=>`<div><span>${esc(s[0])}</span><b>${s[1]?G(s[1]):'обмен'}</b></div>`).join('')}</div>`:'<div class="v no">Не продаётся</div><small>В магазинах</small>';
+ const set=x.st?IT.filter(y=>y.st==x.st&&y.i!=x.i):[];
  $('#app').innerHTML=`<a class="back" href="#c/${x.c}">← ${c[1]}</a><div class="top"><h1>${esc(x.n)}</h1><span class="chip">${x.t}</span></div>${x.e&&x.e!=x.n&&!x.n.startsWith('Чертёж')?`<div class="en">${esc(x.e)}</div>`:''}
- <div class="hd"><div class="big"><img src="${ico(x)}" alt=""></div><div class="sec" style="margin:0"><h2>${si('desc')}Описание</h2><div class="bd">${x.d?esc(x.d):'Описания нет.'}${x.ef?'<p class="note">'+esc(x.ef)+'</p>':''}${x.fv>0?`<p class="note">Питательность: ${x.fv}</p>`:''}</div></div></div>
+ <div class="hd"><div class="big"><img src="${ico(x)}" alt=""></div><div class="sec" style="margin:0"><h2>${hi('desc')}Описание</h2><div class="bd">${x.d?esc(x.d):'Описания нет.'}${x.ef?'<p class="note">'+esc(x.ef)+'</p>':''}${x.fv>0?`<p class="note">Питательность: ${x.fv}</p>`:''}${x.nv>1?`<p class="note">Вариантов предмета: ${x.nv} (отличаются окраской или качеством).</p>`:''}</div></div></div>
  ${recipes(x)}
- <div class="sec"><h2>${si('mn')}Где получить</h2><div class="bd">${srcs||'<div class="sr"><div><p>Способы получения не найдены в игровых данных.</p></div></div>'}</div></div>
- ${uses?`<div class="sec"><h2>${si('use')}Где применяется</h2><div class="bd">${uses}${x.u.length>40?`<p class="note">…и ещё ${x.u.length-40}</p>`:''}</div></div>`:''}
- <div class="sec"><h2>${si('trade')}Торговля</h2><div class="tr"><div><small>Цена продажи</small>${sale}</div><div><small>Цена покупки</small>${buy}</div></div></div>`;
+ <div class="sec"><h2>${hi('get')}Получение</h2><div class="bd">${sources(x)}</div></div>
+ ${set.length?`<div class="sec"><h2>${hi('use')}Комплект «${esc(x.st)}»</h2><div class="bd">${set.map(y=>`<div class="ur"><img src="${ico(y)}" alt=""><a href="#i/${y.i}"><b>${esc(y.n)}</b></a><p>${esc(y.sp||y.t)}</p></div>`).join('')}</div></div>`:''}
+ ${ushow?`<div class="sec"><h2>${hi('use')}Где применяется</h2><div class="bd">${ushow}${uses.length>40?`<p class="note">…и ещё ${uses.length-40}</p>`:''}</div></div>`:''}
+ <div class="sec"><h2>${hi('trade')}Торговля</h2><div class="tr"><div><small>Цена продажи</small>${sale}</div><div><small>Цена покупки</small>${buy}</div></div></div>`;
  document.title=x.n+' — My Time at Portia'}
 function route(){const h=location.hash.slice(1),[a,b]=h.split('/');state={q:'',chip:'',n:90};scrollTo(0,0);document.title='Предметы — My Time at Portia';if(a=='i')item(b);else if(a=='c')category(b);else catalog()}
 addEventListener('hashchange',route);route();
